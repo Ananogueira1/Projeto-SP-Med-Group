@@ -19,3 +19,4 @@ VALUES ('Acupuntura', 'Anestesiologia', 'Angiologia', 'Cardiologia', 'Cirurgia C
 GO
 
 
+INSERT INTO medico (idClinica, idEspecializacao)
