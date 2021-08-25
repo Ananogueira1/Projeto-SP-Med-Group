@@ -46,11 +46,13 @@ CREATE TABLE usuario(
  );
  GO
 
+ DROP TABLE paciente
+ 
  CREATE  TABLE paciente(
  idPaciente INT  PRIMARY KEY IDENTITY,
  idUsuario INT FOREIGN KEY REFERENCES USUARIO (idUsuario),
  nomePaciente VARCHAR (50) UNIQUE NOT NULL,
- dataNascimento VARCHAR (25) NOT NULL,
+ dataNascimento DATETIME NOT NULL,
  telefone VARCHAR (20) UNIQUE NOT NULL,
  rg VARCHAR (20) UNIQUE NOT NULL,
  cpf VARCHAR (20) UNIQUE NOT NULL,
