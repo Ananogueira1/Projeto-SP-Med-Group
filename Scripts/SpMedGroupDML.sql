@@ -29,7 +29,7 @@ INSERT INTO medico (idClinica, idEspecializacao, idUsuario, nomeMedico, crm)
 VALUES (1, 2, 8, 'Ricardo Lemos', '54356-SP'), (1, 17, 9, 'Roberto Possarle', '53452-sp'), (1, 16, 10, 'Helena Strada', '65463-sp')
 GO
 
-SELECT *FROM paciente
+SELECT *FROM MEDICO
 
 DROP TABLE paciente 
 
@@ -48,11 +48,12 @@ VALUES ('Realizada'), ('Cancelada'), ('Agendada')
 GO
 
 INSERT INTO consulta(idPaciente, idMedico, idSituacao, dataConsulta, descricao)
-VALUES (4, 3, 1, '20-01-2020  15:00:00', 'estado normal'), (5, 2, 2, '01-06-2020  10:00:00', 'estado grave'),
-(6, 2, 1, '07-02-2020  11:00:00', 'estado normal'), (7, 2, 1, '06-02-2018  10:00:00', 'estado normal'), (8, 1,2, '07-02-2019  11:00:00', 'estado grave'), 
-(9, 3, 3, '08-03-2020  15:00:00', 'ultra grave'), (10, 1, 3, '09-03-2020  11:00:00', 'estado normal')
+VALUES (1, 3, 1, '20-01-2020  15:00:00', 'estado normal'), (2, 2, 2, '01-06-2020  10:00:00', 'estado grave'),
+(3, 2, 1, '07-02-2020  11:00:00', 'estado normal'), (4, 2, 1, '06-02-2018  10:00:00', 'estado normal'), (5, 1,2, '07-02-2019  11:00:00', 'estado grave'), 
+(6, 3, 3, '08-03-2020  15:00:00', 'ultra grave'), (7, 1, 3, '09-03-2020  11:00:00', 'estado normal');
 GO
 
-SELECT *FROM medico
+SELECT *FROM paciente
+
 
 SELECT *FROM paciente
