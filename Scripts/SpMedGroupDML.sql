@@ -4,6 +4,7 @@ GO
 INSERT INTO tipoUsuario (tituloTipoUsuario)
 VALUES ('Administrador'), ('Medico'), ('Paciente');
 GO
+
 SELECT *FROM USUARIO
 
 INSERT INTO usuario (idTipoUsuario, email, senha, nome)
