@@ -25,7 +25,7 @@ namespace Senai_SpMedicalGroup.Interfaces
         /// Cadastra um novo TipoUsuario
         /// </summary>
         /// <param name="novoTipoUsuario">Objeto TipoUsuario a ser cadastrado</param>
-        void Cadastrar(TipoUsuario novoTipoUsuario); 
+        void Cadastrar(int idTipoUsuario, TipoUsuario novoTipoUsuario); 
 
         /// <summary>
         /// Deleta um TipoUsuario através do id
