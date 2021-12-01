@@ -67,19 +67,6 @@ namespace Senai_SpMedicalGroup.Repositories
 
         }
 
-        public void Deletar(int idMedico)
-        {
-            Medico medicoBuscado = BuscarPorId(idMedico);
-
-            Usuario userMedico = ctx.Usuarios.Find(medicoBuscado.IdUsuario);
-
-            ctx.Usuarios.Remove(userMedico);
-
-            ctx.Medicos.Remove(medicoBuscado);
-
-            ctx.SaveChanges();
-        }
-
         public List<Medico> ListarTodos()
         {
             return ctx.Medicos

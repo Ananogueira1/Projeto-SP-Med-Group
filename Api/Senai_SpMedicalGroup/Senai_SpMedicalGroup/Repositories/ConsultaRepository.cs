@@ -1,4 +1,5 @@
-﻿using Senai_SpMedicalGroup.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Senai_SpMedicalGroup.Contexts;
 using Senai_SpMedicalGroup.Domains;
 using Senai_SpMedicalGroup.Interfaces;
 using System;
@@ -11,11 +12,11 @@ namespace Senai_SpMedicalGroup.Repositories
     public class ConsultaRepository: IConsultaRepository
     {
         MedicalGroupContext ctx = new MedicalGroupContext();
-        public bool AtualizarDescricao(int idConsulta, int idUserMedico, Consultum consulta)
+        public bool AtualizarDescricao(int idConsulta, int idusuario, Consultum consulta)
         {
             Consultum consultaBuscada = ctx.Consulta.FirstOrDefault(p => p.IdConsulta == idConsulta);
 
-            Medico medico = ctx.Medicos.FirstOrDefault(m => m.IdUsuario == idUserMedico);
+            Medico medico = ctx.Medicos.FirstOrDefault(m => m.IdUsuario == idusuario);
 
             if (consultaBuscada == null) return false;
             if (medico.IdMedico != consultaBuscada.IdMedico) return false;
@@ -23,7 +24,7 @@ namespace Senai_SpMedicalGroup.Repositories
             consultaBuscada.Descricao = consulta.Descricao;
             ctx.Consulta.Update(consultaBuscada);
 
-            ctx.SaveChanges();
+            ctx.SaveChanges(); 
 
             return true;
         }
@@ -101,55 +102,56 @@ namespace Senai_SpMedicalGroup.Repositories
         public List<Consultum> ListarTodos()
         {
             return ctx.Consulta
-                .Select(c => new Consultum()
-                {
-                    IdConsulta = c.IdConsulta,
-                    DataConsulta = c.DataConsulta,
-                    Descricao = c.Descricao,
-                    IdMedicoNavigation = new Medico()
-                    {
-                        IdMedico = c.IdMedicoNavigation.IdMedico,
-                        IdUsuario = c.IdMedicoNavigation.IdUsuario,
-                        Crm = c.IdMedicoNavigation.Crm,
-                        NomeMedico = c.IdMedicoNavigation.NomeMedico,
-                        IdClinicaNavigation = new Clinica()
-                        {
-                            NomeFantasia = c.IdMedicoNavigation.IdClinicaNavigation.NomeFantasia,
-                            Cnpj = c.IdMedicoNavigation.IdClinicaNavigation.Cnpj,
-                            RazaoSocial = c.IdMedicoNavigation.IdClinicaNavigation.RazaoSocial,
-                            Endereco = c.IdMedicoNavigation.IdClinicaNavigation.Endereco
-                        },
-                        IdEspecializacaoNavigation = new Especializacao()
-                        {
-                            TipoEspecialidade = c.IdMedicoNavigation.IdEspecializacaoNavigation.TipoEspecialidade
-                        },
-                        IdUsuarioNavigation = new Usuario()
-                        {
-                            Nome = c.IdMedicoNavigation.IdUsuarioNavigation.Nome,
-                            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
-                        }
-                    },
-                    IdPacienteNavigation = new Paciente()
-                    {
-                        IdPaciente = c.IdPacienteNavigation.IdPaciente,
-                        DataNascimento = c.IdPacienteNavigation.DataNascimento,
-                        NomePaciente = c.IdPacienteNavigation.NomePaciente,
-                        Telefone = c.IdPacienteNavigation.Telefone,
-                        Rg = c.IdPacienteNavigation.Rg,
-                        Cpf = c.IdPacienteNavigation.Cpf,
-                        Endereco = c.IdPacienteNavigation.Endereco,
-                        IdUsuarioNavigation = new Usuario()
-                        {
-                            Nome = c.IdMedicoNavigation.IdUsuarioNavigation.Nome,
-                            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
-                        }
-                    },
-                    IdSituacaoNavigation = new Situacao()
-                    {
-                        IdSituacao = c.IdSituacaoNavigation.IdSituacao,
-                        Situacao1 = c.IdSituacaoNavigation.Situacao1
-                    }
-                })
+                //.Select(c => new Consultum()
+                //{
+                //    IdConsulta = c.IdConsulta,
+                //    DataConsulta = c.DataConsulta,
+                //    Descricao = c.Descricao,
+                //    IdMedicoNavigation = new Medico()
+                //    {
+                //        IdMedico = c.IdMedicoNavigation.IdMedico,
+                //        IdUsuario = c.IdMedicoNavigation.IdUsuario,
+                //        Crm = c.IdMedicoNavigation.Crm,
+                //        NomeMedico = c.IdMedicoNavigation.NomeMedico,
+                //        IdClinicaNavigation = new Clinica()
+                //        {
+                //            NomeFantasia = c.IdMedicoNavigation.IdClinicaNavigation.NomeFantasia,
+                //            Cnpj = c.IdMedicoNavigation.IdClinicaNavigation.Cnpj,
+                //            RazaoSocial = c.IdMedicoNavigation.IdClinicaNavigation.RazaoSocial,
+                //            Endereco = c.IdMedicoNavigation.IdClinicaNavigation.Endereco
+                //        },
+                //        IdEspecializacaoNavigation = new Especializacao()
+                //        {
+                //            TipoEspecialidade = c.IdMedicoNavigation.IdEspecializacaoNavigation.TipoEspecialidade
+                //        },
+                //        IdUsuarioNavigation = new Usuario()
+                //        {
+                //            Nome = c.IdMedicoNavigation.IdUsuarioNavigation.Nome,
+                //            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
+                //        }
+                //    },
+                //    IdPacienteNavigation = new Paciente()
+                //    {
+                //        IdPaciente = c.IdPacienteNavigation.IdPaciente,
+                //        DataNascimento = c.IdPacienteNavigation.DataNascimento,
+                //        NomePaciente = c.IdPacienteNavigation.NomePaciente,
+                //        Telefone = c.IdPacienteNavigation.Telefone,
+                //        Rg = c.IdPacienteNavigation.Rg,
+                //        Cpf = c.IdPacienteNavigation.Cpf,
+                //        Endereco = c.IdPacienteNavigation.Endereco,
+                //        IdUsuarioNavigation = new Usuario()
+                //        {
+                //            Nome = c.IdMedicoNavigation.IdUsuarioNavigation.Nome,
+                //            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
+                //        }
+                //    },
+                //    IdSituacaoNavigation = new Situacao()
+                //    {
+                //        IdSituacao = c.IdSituacaoNavigation.IdSituacao,
+                //        Situacao1 = c.IdSituacaoNavigation.Situacao1
+                //    }
+                //})
+                .Include(c => c.IdMedicoNavigation)
                 .ToList();
         }
 

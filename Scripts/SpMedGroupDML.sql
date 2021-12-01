@@ -12,13 +12,14 @@ VALUES (2, 'ligia@gmail.com', 'ligia123', 'Ligia'), (3, 'alexandre@gmail.com', '
 (2, 'henrique@gmail.com', 'henrique423', 'Henrique'), (1,'joao@hotmail.com', 'joao523', 'João'), (3, ' bruno@gmail.com', 'bruno623', 'Bruno'), (3, 'mariana@outlook.com', 'mariana723', 'Mariana'),
 (1, 'ricardo.lemos@spmedicalgroup.com.br', 'ricardo123', 'Ricardo'), (1, 'roberto.possarle@spmedicalgroup.com.br', 'roberto123', 'Roberto'), (1, 'helena.souza@spmedicalgroup.com.br', 'helena123', 'Helena'),
 (1, 'adm@adm.com', 'adm132', 'adm')
-GO
+GO	
 
 INSERT INTO clinica (nomeFantasia, CNPJ, razaoSocial, endereco)
 VALUES ('Clinica Possarle', '86.400.902/0001-30', 'Sp Medical Group', 'Av. Barão Limeira,535, São Paulo, Sp')
 GO
-
-SELECT *FROM clinica
+use [MedicaGroup]
+use 
+SELECT *FROM usuario
 
 INSERT INTO especializacao (tipoEspecialidade)
 VALUES ('Acupuntura'), ('Anestesiologia'), ('Angiologia'), ('Cardiologia'), ('Cirurgia Cardiovascular'), ('Cirurgia da Mão'), ('Cirurgia do Aparelho Digestivo'), ('Cirurgia Geral'),
@@ -30,7 +31,7 @@ INSERT INTO medico (idClinica, idEspecializacao, idUsuario, nomeMedico, crm)
 VALUES (1, 2, 8, 'Ricardo Lemos', '54356-SP'), (1, 17, 9, 'Roberto Possarle', '53452-sp'), (1, 16, 10, 'Helena Strada', '65463-sp')
 GO
 
-SELECT *FROM MEDICO
+SELECT *FROM MEDICO																											
 
 DROP TABLE paciente 
 
