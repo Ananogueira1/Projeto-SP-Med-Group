@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Cadastro</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="menu">
+                <img src="./img/logo.png" alt=""class="logo">
+                <div class="nav">
+                    <ul class="nav-list">
+                        <li>Especialistas</li>
+                        <li>Endereço</li>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section class="section">
+            <form>
+                <h3>Cadastro de consulta</h3>
+                <div class="input-block">
+                    <label for="login-email">Nome</label>
+                    <input type="text" id="login-name"/>
+                </div>
+                <div class="input-block">
+                    <label for="login-email">Médico</label>
+                    <input type="email" id="login-email"/>
+                </div>
+                <div class="input-block">
+                    <label for="cars">Situação:</label>
+                    <select name="cars" id="cars">
+                        <option value="opcoes">Selecione:</option>
+                        <option value="situacao1">Agendada</option>
+                        <option value="situacao2">Cancelada</option>
+                        <option value="situacao3">Realizada</option>
+                    </select>
+                </div>
+                <div class="input-block">
+                    <label for="birthday">Birthday:</label>
+                    <input type="date" id="birthday" name="birthday">
+                </div>
+                <button type="submit" class="btn-login">Cadastro</button>
+            </form>
+        </section>
+    </body>
+</html>

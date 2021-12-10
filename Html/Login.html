@@ -1,56 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login SP-Med-Group</title>
-    <link rel="stylesheet" href="Login.css" />
-</head>
-
-<body>
-    <header>
-        <div class="nav">
-            <a href="#"><img src="img/logo.svg" alt="logo" class="logo"></a>
-            <ul class="menu">
-                <li><a href="#">Especialistas</a></li>
-                <li><a href="#">Endereço</a></li>
-                <li><a href="#">Sair</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <main>
-        <section class="login-section">
-<main class="fundo_cadastro">
-        <section class="section">
-
-            <form class="box_Listar">
-
-                <h2 class="usu_cada">usuario cadastrados</h2>
-
-                <div class="qualquer">
-                    <div class="retangulos1">
-                        <div class="sla">
-                        </div>
-
-                    </div>
-
-
-                    <div class="retangulos2">
-                        <div class="sla">
-                    
-                        </div>
-                    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Login</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="menu">
+                <img src="./img/logo.png" alt=""class="logo">
+                <div class="nav">
+                    <ul class="nav-list">
+                        <li>Especialistas</li>
+                        <li>Endereço</li>
+                        <li>Sair</li>
+                    </ul>
                 </div>
-
-
-
+            </div>
+        </header>
+        <section class="section">
+            <form>
+                <h3>Login</h3>
+                <div class="input-block">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email"/>
+                </div>
+                <div class="input-block">
+                    <label for="login-senha">Senha</label>
+                    <input type="password" id="login-senha"/>
+                    <a href="#"><p>Esqueceu sua senha?</p></a>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <a href="#" class="no-conta"><p>Ainda não possui uma conta?</p></a>
             </form>
         </section>
-    </main>
-
-</body>
-
+    </body>
 </html>
