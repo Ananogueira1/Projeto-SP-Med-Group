@@ -22,4 +22,11 @@ export default class Projetos extends Component {
     componentDidMount() {
         this.BuscarProjetos();
     }
+
+    render(){
+        return( <Text>khlkjhjk</Text>    
+
+
+        );
+    }
 }

@@ -27,7 +27,7 @@ namespace Senai_SpMedicalGroup.Controllers
         /// Lista todos os médicos
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Get()
         {
