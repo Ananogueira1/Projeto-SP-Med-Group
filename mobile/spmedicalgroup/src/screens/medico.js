@@ -48,8 +48,7 @@ export default class Projetos extends Component {
                 <View style={styles.main}>
                     <View style={styles.Meu_titulo}>
 
-                        <Text style={styles.consultas}>MINHAS CONSULTAS</Text>
-                        <View style={styles.linha}></View>
+                        <Text style={styles.consultas}>LISTAR CONSULTAS</Text>
                     </View>
 
                     <FlatList
@@ -70,10 +69,10 @@ export default class Projetos extends Component {
     renderItem = ({ item }) => (
         <View style={styles.container_lista}>
             <View style={styles.container_nomes}>
-                <Text style={styles.NomeMedico}>{(item.IdMedicoNavigation.NomeMedico)}</Text>
-                <Text style={styles.NomePaciente}>{(item. IdPacienteNavigation.NomePaciente)}</Text>
-                <Text style={styles.Situacao}>{(item.IdSituacaoNavigation.Situacao1)}</Text>
-                <Text style={styles.dataConsulta}>{item. DataConsulta}</Text>
+                <Text style={styles.NomeMedico}>{(item.idMedicoNavigation.nomeMedico)}</Text>
+                <Text style={styles.NomePaciente}>{(item.idPacienteNavigation.nomePaciente)}</Text>
+                <Text style={styles.Situacao}>{(item.idSituacaoNavigation.situacao1)}</Text>
+                <Text style={styles.dataConsulta}>{item.dataConsulta}</Text>
             </View>
             <Text style={styles.descricao}>
                 {item.Descricao}
@@ -104,61 +103,54 @@ const styles = StyleSheet.create({
     },
 
     consultas: {
-        widthi: '10%',
-        color: '#FF00E5',
-        fontSize: 25,
-
-
-    },
-
-    linha: {
-        width: '60%',
-        backgroundColor: 'purple',
-        height: 3,
-        marginBottom: 10
+        widthi: '45%',
+        color: '#000',
+        fontSize: 30,
+        
     },
 
     Meu_titulo: {
-        justifyContent: 'space-between',
+       // justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: '15%',
+        marginTop: '25%',
         // marginBottom: '97%',
         height: '5%',
-        width: '100%'
+        width: '100%',
     },
 
     container_lista: {
-        // height: '40%',
-        flex : 1,
+         height: 150,
+        flex : 4,
         backgroundColor: '#f1f1f1',
-        borderRadius: 10,
-        paddingLeft: 5,
-        marginTop: 50,
+       // borderRadius: 10,
+        paddingLeft: 7,
+        width: 230,
+        marginTop: 100,
     },
 
     NomeMedico: {
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: 'Roboto',
         color: '#000',
         fontWeight: '400',
     },
 
     NomePaciente: {
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: 'Roboto',
         color: '#000',
         fontWeight: '400',
     },
 
     Situacao: {
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: 'Roboto',
         color: '#000',
         fontWeight: '400',
     },
 
     dataConsulta: {
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: 'Roboto',
         color: '#000',
         fontWeight: '400',
