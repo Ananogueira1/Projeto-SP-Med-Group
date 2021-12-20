@@ -4,52 +4,49 @@ GO
 --------------------------------- DQL ---------------------------------
 
 
-SELECT * FROM tipoUsuario;
-SELECT * FROM Usuario;
-SELECT * FROM Especialidade;
-SELECT * FROM Clinica;
-SELECT * FROM Medico;
-SELECT * FROM Paciente;
-SELECT * FROM Situacao;
-SELECT * FROM Consulta;
+SELECT P.nomePaciente Paciente,
+       M.nomeMedico Médico,
+	   E.tipoEspecialidade Especializacao,
+	   convert(varchar(20),C.dataConsulta,110) [Dia da Consulta],
+	   S.situacao situacao,
+	   c.descricao [Descrição da consulta]
+FROM consulta C
+INNER JOIN paciente P ON P.idPaciente = C.idPaciente
+INNER JOIN medico M ON M.idMedico = C.idMedico
+INNER JOIN Especialidade E ON M.idEspecialidade = E.tipoEspecialidade
+INNER JOIN situacao S ON C.idSituacao = S.idSituacao
 
 
-------Algumas Listagens-----
+--> Usando function
 
---Aqui estão todos os paciente do sistema
-SELECT NomeUsu 'Nome do Paciente', Email , PerfisDeUsuario 'Tipo do usuário',CPF
-FROM Usuario u
-INNER JOIN Paciente p
-ON u.IDUsuario = p.IDUsuario
-INNER JOIN tipoUsuario ti
-ON ti.IDTipoUsuario = u.IDTipoUsuario
+CREATE FUNCTION MedpEspecialidade(@idEspecialidade VARCHAR(90))
+RETURNS TABLE
+AS
+RETURN(
+	SELECT @idEspecialidade AS ESPECIALIDADES, COUNT(tipoEspecialidade) [Numero De Medicos] FROM Especialidade
+	WHERE tipoEspecialidade LIKE '%' + @idEspecialidade + '%'
+)
 GO
 
---Listagem dos pacientes cadastrados no sistema sendo seu Telefone, Cpf, E endereço
-SELECT NomeUsu 'Nome do Paciente', Email, Telefone, CPF, Endereço
-FROM Usuario u
-INNER JOIN Paciente
-ON u.IDUsuario = Paciente.IDUsuario
-GO
---Estes são os medicos todos os médicos cadastrados
-SELECT * FROM Usuario u
-INNER JOIN Medico m
-ON u.IDUsuario = m.IDUsuario
+SELECT * FROM MedpEspecialidade('Pediatria');
 GO
 
 
---ELE REALIZA A CONTAGEM DE MEDICOS PRESENTE NA ARÉA INDICADA
-CREATE FUNCTION MedicosArea(@IDEspecialidade VARCHAR(100))
-RETURNS INT 
+-- calculo de idade
+CREATE PROCEDURE idadePaciente
+@idade VARCHAR (20)
 AS
 BEGIN 
-DECLARE @Quantos AS INT
-SET @Quantos = 
-(
-SELECT COUNT(NomeMedico) FROM Medico 
-INNER JOIN Especialidade
-ON Medico.IDEspecialidade = Especialidade.IDEspecialidade
-WHERE Especialidade.NomeEspecialidade = @IDEspecialidade 
-)
-RETURN @Quantos
-END 
+	
+	SELECT nomePaciente, DATEDIFF(YEAR, dataNascimento, GETDATE())  AS Idade FROM PACIENTE
+	where nomePaciente = @idade
+		
+END
+GO
+
+exec idadePaciente 'Mariana'
+GO
+
+--quantidade de usuarios
+SELECT COUNT(idUsuario) QuantidadeUsuario FROM USUARIO
+GO

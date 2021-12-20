@@ -33,9 +33,9 @@ namespace Senai_SpMedicalGroup.Repositories
                         Endereco = c.IdClinicaNavigation.Endereco,
                         
                     },
-                    IdEspecializacaoNavigation = new Especializacao()
+                    IdEspecialidadeNavigation = new Especialidade()
                     {
-                        TipoEspecialidade = c.IdEspecializacaoNavigation.TipoEspecialidade
+                        TipoEspecialidade = c.IdEspecialidadeNavigation.TipoEspecialidade
                     },
                     IdUsuarioNavigation = new Usuario()
                     {
@@ -83,9 +83,9 @@ namespace Senai_SpMedicalGroup.Repositories
                         RazaoSocial = c.IdClinicaNavigation.RazaoSocial,
                         Endereco = c.IdClinicaNavigation.Endereco,
                     },
-                    IdEspecializacaoNavigation = new Especializacao()
+                    IdEspecialidadeNavigation = new Especialidade()
                     {
-                        TipoEspecialidade = c.IdEspecializacaoNavigation.TipoEspecialidade
+                        TipoEspecialidade = c.IdEspecialidadeNavigation.TipoEspecialidade
                     },
                     IdUsuarioNavigation = new Usuario()
                     {

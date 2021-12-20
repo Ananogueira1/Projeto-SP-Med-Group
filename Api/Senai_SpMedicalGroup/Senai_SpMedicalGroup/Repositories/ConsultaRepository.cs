@@ -175,10 +175,10 @@ namespace Senai_SpMedicalGroup.Repositories
                             Cnpj = c.IdMedicoNavigation.IdClinicaNavigation.Cnpj,
                             RazaoSocial = c.IdMedicoNavigation.IdClinicaNavigation.RazaoSocial,
                             Endereco = c.IdMedicoNavigation.IdClinicaNavigation.Endereco
-                        },
-                        IdEspecializacaoNavigation = new Especializacao()
+                        },IdEspecialidadeNavigation
+                        = new Especialidade()
                         {
-                            TipoEspecialidade = c.IdMedicoNavigation.IdEspecializacaoNavigation.TipoEspecialidade
+                            TipoEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.TipoEspecialidade
                         },
                         IdUsuarioNavigation = new Usuario()
                         {

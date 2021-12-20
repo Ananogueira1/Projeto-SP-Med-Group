@@ -18,7 +18,7 @@ export default class Login extends Component {
     super(props);
     this.state = {
       email: 'henrique@gmail.com',
-      senha: 'henrique423',
+      senha: 'henrique987',
     }
   }
 
@@ -59,7 +59,7 @@ export default class Login extends Component {
             this.props.navigation.navigate('Medico');
             break;
           case '3':
-            this.props.navigation.navigate('ConsultaPaciente');
+            this.props.navigation.navigate('Paciente');
             break;
 
           default:
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 
   overlay: {
     ...StyleSheet.absoluteFillObject
-
+    
   },
 
 

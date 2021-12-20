@@ -48,7 +48,7 @@ export default class Projetos extends Component {
                 <View style={styles.main}>
                     <View style={styles.Meu_titulo}>
 
-                        <Text style={styles.consultas}>LISTAR CONSULTAS</Text>
+                        <Text style={styles.consultas}>LISTAR MINHAS CONSULTAS</Text>
                     </View>
 
                     <FlatList

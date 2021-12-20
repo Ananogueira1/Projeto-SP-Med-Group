@@ -6,15 +6,15 @@ GO
 
 CREATE TABLE tipoUsuario
 (
-	IDTipoUsuario INT PRIMARY KEY IDENTITY,
-	PerfisDeUsuario VARCHAR(50) NOT NULL
+	idTipoUsuario INT PRIMARY KEY IDENTITY,
+	tituloTipoUsuario VARCHAR(50) NOT NULL
 );
 GO --Tabela Criada
 
 CREATE TABLE Especialidade
 (
-		IDEspecialidade INT PRIMARY KEY IDENTITY,
-		NomeEspecialidade VARCHAR (100) UNIQUE NOT NULL
+		idEspecialidade INT PRIMARY KEY IDENTITY,
+		tipoEspecialidade VARCHAR (90) UNIQUE NOT NULL
 );
 GO --Tabela Criada
 
@@ -23,10 +23,10 @@ GO --Tabela Criada
 CREATE TABLE Usuario
 (
 		idUsuario INT PRIMARY KEY IDENTITY,
-		IDTipoUsuario INT FOREIGN KEY REFERENCES tipoUsuario(IDTipoUsuario),
-		Email VARCHAR (100) UNIQUE NOT NULL,
-		Senha VARCHAR (50) NOT NULL,
-		NomeUsu VARCHAR (50) NOT NULL
+		idTipoUsuario INT FOREIGN KEY REFERENCES tipoUsuario(idTipoUsuario),
+		email VARCHAR (90) UNIQUE NOT NULL,
+		senha VARCHAR (45) NOT NULL,
+		nome VARCHAR (45)	 NULL
 );
 GO --Tabela Criada
 
@@ -38,57 +38,76 @@ GO --Tabela Criada
 
 CREATE TABLE Clinica
 (
-		IDClinica INT PRIMARY KEY IDENTITY,
-		CNPJ CHAR(14) UNIQUE NOT NULL,
-		Endereço VARCHAR (50) UNIQUE NOT NULL,
-		NomeClinica VARCHAR (50) UNIQUE NOT NULL,
-		Abertura TIME NOT NULL,
-		Fechamento  TIME NOT NULL,
-		RazaoSocial VARCHAR (50) UNIQUE NOT NULL
+		idClinica INT PRIMARY KEY IDENTITY,
+		CNPJ CHAR(50) UNIQUE NOT NULL,
+		endereco VARCHAR (150) UNIQUE NOT NULL,
+		nomeFantasia VARCHAR (50) UNIQUE NOT NULL,
+		RazaoSocial VARCHAR (200) UNIQUE NOT NULL
 );
 GO --Tabela Criada
 
+--drop table medico
 
 CREATE TABLE Medico
 (
-		iDMedico INT PRIMARY KEY IDENTITY,
-		IDUsuario INT FOREIGN KEY REFERENCES Usuario (IDUsuario),
-		IDEspecialidade INT FOREIGN KEY REFERENCES Especialidade (IDEspecialidade),
-		IDClinica INT FOREIGN KEY REFERENCES Clinica (IDClinica),
-		NomeMedico VARCHAR (50) NOT NULL,
-		CRM VARCHAR (10) UNIQUE NOT NULL
+		idMedico INT PRIMARY KEY IDENTITY,
+		idUsuario INT FOREIGN KEY REFERENCES Usuario (idUsuario),
+		idEspecialidade INT FOREIGN KEY REFERENCES Especialidade (idEspecialidade),
+		idClinica INT FOREIGN KEY REFERENCES Clinica (idClinica),
+		nomeMedico VARCHAR (50) NOT NULL,
+		crm VARCHAR (40) UNIQUE NOT NULL
 );
 GO --Tabela Criada
 
+--drop table Paciente
+
 CREATE TABLE Paciente
 (
-		IDPaciente INT PRIMARY KEY IDENTITY,
-		IDUsuario INT FOREIGN KEY REFERENCES Usuario(IDUsuario),
-		NomePac VARCHAR(50) NOT NULL,
-		RG CHAR(9) UNIQUE NOT NULL,
-		CPF CHAR (11) UNIQUE NOT NULL,
-		Endereço VARCHAR (100) UNIQUE NOT NULL,
-		DataNasc DATE NOT NULL,
-		Telefone VARCHAR(11),	
+		idPaciente INT PRIMARY KEY IDENTITY,
+		idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+		nomePaciente VARCHAR(50) NOT NULL,
+		rg CHAR(20) UNIQUE NOT NULL,
+		cpf CHAR (20) UNIQUE NOT NULL,
+		endereco VARCHAR (150) UNIQUE NOT NULL,
+		dataNascimento DATETIME NOT NULL,
+		telefone VARCHAR(20),	
 )
 GO--Tabela Criada
 
-SELECT * FROM Paciente
+--SELECT * FROM Paciente
 
 CREATE TABLE Situacao
 (
-		IDSituacao INT PRIMARY KEY IDENTITY,
-		QualSituacao VARCHAR (70) NOT NULL
+		idSituacao INT PRIMARY KEY IDENTITY,
+		Situacao VARCHAR (80) NOT NULL
 );
 GO--Tabela Criada
+--drop table consulta
 
 CREATE TABLE Consulta
 (
-	IDConsulta INT PRIMARY KEY IDENTITY,
-	IDMedico INT FOREIGN KEY REFERENCES Medico(iDMedico),
-	IDPaciente INT FOREIGN KEY REFERENCES Paciente(IDPaciente),
-	IDSituacao INT FOREIGN KEY REFERENCES Situacao(IDSituacao),
-	DataConsulta DATE NOT NULL,
-	DescricaoConsulta VARCHAR (500) default ('Não apresenta uma descrição dos sintomas')
+	idConsulta INT PRIMARY KEY IDENTITY,
+	idMedico INT FOREIGN KEY REFERENCES Medico(idMedico),
+	idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
+	idSituacao INT FOREIGN KEY REFERENCES Situacao(idSituacao),
+	dataConsulta DATE NOT NULL,
+	descricao VARCHAR (100) default ('Não apresenta uma descrição dos sintomas')
 );
 GO--Tabela Criada
+
+ ---Criou um evento para que a idade do usuário seja calculada todos os dias
+ALTER TABLE paciente
+ADD idadePaciente TINYINT
+
+
+CREATE PROCEDURE SP_IDADE_PACIENTE
+AS
+BEGIN
+
+UPDATE paciente SET idadePaciente = DATEDIFF(YEAR,dataNascimento,GETDATE())
+
+END 
+
+EXEC SP_IDADE_PACIENTE
+
+SELECT * FROM paciente

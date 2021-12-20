@@ -77,7 +77,7 @@ namespace Senai_SpMedicalGroup.Repositories
 
         public List<Usuario> ListarTodos()
         {
-            return ctx.Usuarios
+             return ctx.Usuarios
                 .Select(u => new Usuario()
                 {
                     IdUsuario = u.IdUsuario,
